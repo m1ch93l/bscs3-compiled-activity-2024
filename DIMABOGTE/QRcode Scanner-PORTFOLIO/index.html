@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Scanner</title>
+    <style>
+        #reader {
+            width: 100%;
+            max-width: 600px;
+            margin: 50px auto;
+        }
+    </style>
+</head>
+<body>
+
+<div id="reader"></div>
+
+<script src="https://cdn.rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js"></script>
+<script src="./node_modules/html5-qrcode/html5-qrcode.min.js"></script>
+
+<script>
+    const html5QrcodeScanner = new Html5QrcodeScanner(
+        "reader", { fps: 10, qrbox: 250 }
+    );
+
+    html5QrcodeScanner.render((result) => {
+        // Handle the result when a QR code is scanned
+        console.log(result);
+        alert(`QR Code Scanned: ${result}`);
+        
+        // Redirect to another page after a successful scan
+        window.location.href = "PortFoliopage.php";
+    }, (error) => {
+        // Handle errors (e.g., camera not available)
+        console.error(error);
+    });
+</script>
+
+</body>
+</html>

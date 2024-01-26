@@ -1,0 +1,39 @@
+.nav-item {
+    position: relative; /* Ensure the dropdown is positioned relative to the parent */
+  }
+  
+  .dropdown-menu {
+    display: none; /* Hide the dropdown menu by default */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000; /* Adjust as needed based on your layout */
+    min-width: 160px; /* Adjust the minimum width as needed */
+}
+    .dropdown-item {
+      display: block;
+      width: 100%;
+      padding: 0.5rem 1rem;
+      clear: both;
+      font-weight: 400;
+      color: #212529;
+      text-align: inherit;
+      white-space: nowrap;
+      background-color: transparent;
+      border: 0;
+    }
+  
+    .dropdown-divider {
+      height: 1px;
+      margin: 0.5rem 0;
+      overflow: hidden;
+      background-color: #e9ecef;
+    }
+  
+  
+  /* Show the dropdown menu when the parent is hovered or focused */
+  .nav-item:hover .dropdown-menu,
+  .nav-item:focus-within .dropdown-menu {
+    display: block;
+  }
+  
