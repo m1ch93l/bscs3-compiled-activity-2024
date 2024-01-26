@@ -1,0 +1,102 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    background-image: url(./asui.png);
+    background-size: cover;
+    background-position: center; 
+    background-repeat: no-repeat;
+    height: 100vh; 
+
+}
+
+h1 {
+    color: rgb(241, 241, 241);
+    font-size: 3rem;
+}
+
+main {
+    color: rgb(241, 241, 241);
+    background-color: rgba(76, 85, 82, 0.463);
+    height: 70vh;
+    width: 70%;
+    border-radius: 1rem;
+    border: 1px solid rgb(167, 166, 166);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.formm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5%;
+    
+    
+    width: 80%;
+    height: 20%;
+
+}
+
+input {
+    height: 70%;
+    width: 70%;
+    background-color: rgba(238, 254, 254, 0.834);
+    border-radius: 1rem;
+    font-size: 2.5rem;
+    padding: 0 2rem;
+    text-align: center;
+}
+
+button {
+    width: 20%;
+    height: 50%;
+}
+
+.helper {
+    height: 40%;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10%;
+}
+
+.chances {
+    background-color: rgba(0, 0, 0, 0.449);
+    width: 175px;
+    height: 175px;
+    border-radius: 50%;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+}
+
+.chances .tryCounter {
+    font-size: 3.5rem;
+    margin: 0;
+}
+
+.chances .chance {
+    font-weight: 600;
+    font-size: 0.9rem;
+
+}
+
+.hint {
+    height: 60%;
+    width: 50%;
+    background-color: rgba(0, 0, 0, 0.449);
+    border-radius: 1rem;
+
+    text-align: center;
+    text-justify: auto;
+}
