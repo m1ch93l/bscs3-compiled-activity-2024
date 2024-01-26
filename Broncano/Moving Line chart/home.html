@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Moving Line Chart</title>
+    <!-- Include Chart.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 10;
+            padding: 10;
+            background-color: #e0e0e0;
+            text-align: center;
+        }
+
+        canvas {
+            max-width: 1000px;
+            margin: 50px auto;
+            width: 100%;
+    
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Moving Line Chart</h1>
+    
+    <!-- Create a canvas element to render the chart -->
+    <canvas id="myLineChart"></canvas>
+
+    <script>
+        // Sample data for the line chart
+        const data = {
+            labels: ['Monday', 'Tuesday', ' Wednesday', 'Thursday', 'Friday'],
+            datasets: [{
+                label: 'Week Sales',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(80, 192, 192, 1)',
+                borderWidth: 1,
+                data: [65, 59, 80, 81, 56],
+            }],
+        };
+
+        // Chart configuration
+        const config = {
+  type: 'line',
+  data: data,
+  options: {
+    animations: {
+      tension: {
+        duration: 1000,
+        easing: 'linear',
+        from: 1,
+        to: 0,
+        loop: true
+      }
+    },
+    },
+        };
+
+        // Get the canvas element and create the chart
+        const ctx = document.getElementById('myLineChart').getContext('2d');
+        const myLineChart = new Chart(ctx, config);
+    </script>
+
+</body>
+</html>
