@@ -1,0 +1,87 @@
+.auto-type {
+    color: rgb(247, 5, 126);
+}
+
+#my-pic-circle {
+    position: relative;
+    border-radius: 50%;
+    height: 400px;
+    width: 400px;
+    overflow: hidden;
+    border-left: 5px solid var(--pink);
+    border-right: 5px solid var(--pink);
+}
+
+#my-pic-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.contact-icon-holder {
+    position: absolute;
+    top: 0;
+    right: 50px; /* Change the right property to align to the right */
+    bottom: 0;
+    display: flex;
+    height: 410px;
+    flex-direction: column;
+    justify-content: center; /* Change from center to flex-end */
+
+}
+
+.contact-icons {
+    margin: 10px;
+    border: none;
+    background-color: transparent;
+    transition: 0.5s;
+}
+
+.contact-icons i {
+    font-size: 3rem;
+    color: var(--white);
+    transition: 0.3s;
+}
+
+.contact-icons i:hover {
+    color: var(--pink-light);
+    cursor: pointer;
+}
+
+
+
+body {
+    background-color: #f8f9fa;
+}
+#skills {
+    padding: 80px 0;
+}
+.section-title {
+    color: #343a40;
+}
+.skill-card {
+    margin-bottom: 20px;
+}
+.card {
+    border: none;
+    box-shadow: 0 4px 8px rgba(207, 2, 105, 0.774);
+    transition: box-shadow 0.3s;
+}
+.card:hover {
+    box-shadow: 0 8px 16px rgba(207, 2, 105, 0.774);
+}
+.card-title {
+    color: #007bff;
+}
+.card-text {
+    color: #6c757d;
+}
+
+.custom-shadow-lg {
+    box-shadow: 0 4px 8px rgba(236, 9, 96, 0.979);
+    transition: box-shadow 0.3s ease; /* Add smooth transition effect */
+}
+
+.custom-shadow-lg:hover {
+box-shadow: 0 10px 20px rgba(236, 9, 96, 0.979); /* Adjust hover shadow values as needed */
+}
