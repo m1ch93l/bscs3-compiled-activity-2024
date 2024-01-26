@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="bb8e4b89-11a2-4456-8971-eadcd36b450b" name="Changes" comment="set the modal to center">
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "johnlouie09"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="cea66f12-8c06-4ae0-a006-bc9ba50de793" />
+        <option name="url" value="https://github.com/kr1sjanee/Guessing_Word_Game.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="2awt42rciqrPQqdwomnptAGC7Zu" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/xampp/htdocs/guesswhat",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-php-predefined-ba97393d7c68-b4dcf6bb9de9-com.jetbrains.php.sharedIndexes-PS-233.13135.108" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="bb8e4b89-11a2-4456-8971-eadcd36b450b" name="Changes" comment="" />
+      <created>1705241275761</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1705241275761</updated>
+      <workItem from="1705241278988" duration="73000" />
+      <workItem from="1705241423893" duration="178000" />
+      <workItem from="1705241619771" duration="11000" />
+      <workItem from="1705241653034" duration="931000" />
+      <workItem from="1705293279222" duration="122000" />
+      <workItem from="1705293530676" duration="162000" />
+      <workItem from="1705294279089" duration="46000" />
+      <workItem from="1705312379289" duration="72000" />
+      <workItem from="1705312469169" duration="31000" />
+      <workItem from="1705312527364" duration="51000" />
+      <workItem from="1705312598756" duration="26000" />
+      <workItem from="1705325701064" duration="3538000" />
+      <workItem from="1705380290122" duration="1869000" />
+      <workItem from="1705383851757" duration="17000" />
+      <workItem from="1705415603526" duration="1671000" />
+      <workItem from="1705589857287" duration="543000" />
+    </task>
+    <task id="LOCAL-00001" summary="add the website icon">
+      <option name="closed" value="true" />
+      <created>1705591076616</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1705591076616</updated>
+    </task>
+    <task id="LOCAL-00002" summary="remove the impostor comments">
+      <option name="closed" value="true" />
+      <created>1705591444178</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1705591444178</updated>
+    </task>
+    <task id="LOCAL-00003" summary="combine the check_answer.php to index.php to make the modal loads in same page">
+      <option name="closed" value="true" />
+      <created>1705594826499</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1705594826499</updated>
+    </task>
+    <task id="LOCAL-00004" summary="add the other questions in array">
+      <option name="closed" value="true" />
+      <created>1705595265711</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1705595265711</updated>
+    </task>
+    <task id="LOCAL-00005" summary="correct some answer">
+      <option name="closed" value="true" />
+      <created>1705595450414</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1705595450414</updated>
+    </task>
+    <task id="LOCAL-00006" summary="add fade animation in modal">
+      <option name="closed" value="true" />
+      <created>1705595588028</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1705595588028</updated>
+    </task>
+    <task id="LOCAL-00007" summary="set the modal to center">
+      <option name="closed" value="true" />
+      <created>1705595744545</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1705595744546</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add the website icon" />
+    <MESSAGE value="remove the impostor comments" />
+    <MESSAGE value="combine the check_answer.php to index.php to make the modal loads in same page" />
+    <MESSAGE value="add the other questions in array" />
+    <MESSAGE value="correct some answer" />
+    <MESSAGE value="add fade animation in modal" />
+    <MESSAGE value="set the modal to center" />
+    <option name="LAST_COMMIT_MESSAGE" value="set the modal to center" />
+  </component>
+</project>
