@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semantic Word Association Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+
+        #game-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        input {
+            width: 200px;
+            padding: 10px;
+            margin: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <h1>Welcome to the Semantic Word Association Game!</h1>
+        <p>Enter a word related to the previous one. To exit, type 'exit'.</p>
+
+        <input type="text" id="wordInput" placeholder="Enter a word">
+        <button onclick="checkWord()">Submit</button>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        let previousWord = prompt("Enter the starting word:").toLowerCase();
+
+        function checkWord() {
+            const currentWord = document.getElementById("wordInput").value.toLowerCase();
+
+            if (currentWord === 'exit') {
+                document.getElementById("result").innerHTML = "Thanks for playing. Goodbye!";
+            } else if (isWordRelated(previousWord, currentWord)) {
+                document.getElementById("result").innerHTML = `Correct! '${currentWord}' is related to '${previousWord}'.`;
+                previousWord = currentWord;
+            } else {
+                document.getElementById("result").innerHTML = `Incorrect! '${currentWord}' is not related to '${previousWord}'.`;
+            }
+        }
+
+        function isWordRelated(word1, word2) {
+            // You can customize this function to check semantic relationships between words
+            // For simplicity, this example checks if the first three letters are the same
+            return word1.slice(0, 3) === word2.slice(0, 3);
+        }
+    </script>
+</body>
+</html>
