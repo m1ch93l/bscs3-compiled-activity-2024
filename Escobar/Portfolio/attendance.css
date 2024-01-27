@@ -1,0 +1,117 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+}
+
+#attendance-container {
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+}
+  #attendance-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background: linear-gradient(45deg, #007bff, #555); /* Mixed color background */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  color: #fff; /* Text color on the mixed background */
+  transition: background-color 0.3s; /* Smooth transition for the background color */
+}
+
+#attendance-container:hover {
+  background: linear-gradient(45deg, #0056b3, #444); /* New background color on hover */
+}
+
+
+.input-field {
+  display: block;
+  margin: 5px -10px;
+  padding: 10px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.button-container {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.button-container button {
+  padding: 10px 20px;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button-container button#start-attendance {
+  background-color: #28a745; /* Green color for Start Attendance button */
+}
+
+.button-container button#general-time-out-button {
+  background-color: #ffc107; /* Yellow color for General Time Out button */
+}
+
+.button-container button#search-button {
+  background-color: #007bff; /* Blue color for Search button */
+}
+
+.button-container button#mark-attendance {
+  background: linear-gradient(45deg, #007bff, #28a745); /* Mix of green (#28a745) and blue (#007bff) */
+}
+
+.button-container button#refresh-button {
+  background-color: #dc3545; /* Red color for Refresh button */
+}
+
+.button-container button:hover {
+  filter: brightness(1.2);
+}
+
+#attendance-table {
+  margin-top: 20px;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#attendance-table th,
+#attendance-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  text-align: center;
+}
+
+.grid-item {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.timeout-button {
+  background-color: #fbbf24;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.timeout-button:hover {
+  background-color: #d7a000;
+}

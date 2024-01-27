@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Treasury Record</title>
+  <link rel="stylesheet" href="treasury.css">
+</head>
+<body>
+  <div id="treasury-container">
+    <h2>Treasury Record</h2>
+    <input type="text" id="event-input" class="input-field" placeholder="Event:">
+    <input type="number" id="contribution-cost-input" class="input-field" placeholder="Contribution Cost:">
+    <div class="button-container">
+      <button id="start-collection">Start Collection</button>
+    </div>
+    <div id="collection-fields" style="display: none;">
+      <input type="text" id="name-input" class="input-field" placeholder="Name:">
+    <div class="button-container">
+  										<button id="add-contribution" style="background: linear-gradient(45deg, #007bff, #ff0000);">Add Contribution</button>
+										</div>
+    </div>
+    <input type="text" id="search-input" class="input-field" placeholder="Search for Contributor's Name:">
+    <button id="search-button">Search</button>
+    <div class="button-container">
+      <!-- Adjusted margin for Refresh button -->
+      <button id="refresh-button" style="margin-right: 10px;">Refresh</button>
+    </div>
+    <div id="treasury-header">
+      Contribution Cost: <span id="contribution-cost">100</span><br>
+      Total Collected Amount: <span id="total-collected-money">0</span>
+    </div>
+    <table id="treasury-table">
+      <thead>
+        <tr>
+          <th>Event</th>
+          <th>Name of Contributor</th>
+          <th>Contributed Amount</th>
+          <th>Remaining Balance</th>
+          <th>Date</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    const eventInput = document.getElementById("event-input");
+    const contributionCostElement = document.getElementById("contribution-cost");
+    const contributionCostInput = document.getElementById("contribution-cost-input");
+    const startCollectionButton = document.getElementById("start-collection");
+    const collectionFields = document.getElementById("collection-fields");
+    const nameInput = document.getElementById("name-input");
+    const addContributionButton = document.getElementById("add-contribution");
+    const refreshButton = document.getElementById("refresh-button");
+    const totalCollectedMoneyButton = document.getElementById("total-collected-money-button");
+    const treasuryTable = document.getElementById("treasury-table");
+    const tbody = treasuryTable.querySelector("tbody");
+    const searchInput = document.getElementById("search-input");
+    const searchButton = document.getElementById("search-button");
+
+    let isCollectionStarted = false;
+    let currentEvent;
+    let contributionCost;
+    const treasuryRecords = [];
+
+    // Function to start collection for an event
+    function startCollection() {
+      const event = eventInput.value;
+      const newContributionCost = parseFloat(contributionCostInput.value);
+
+      if (event && !isCollectionStarted && !isNaN(newContributionCost) && newContributionCost >= 0) {
+        eventInput.disabled = true;
+        startCollectionButton.disabled = true;
+        contributionCostInput.disabled = true; // Lock the contribution cost
+        contributionCost = newContributionCost; // Set the contribution cost
+        currentEvent = event;
+        isCollectionStarted = true;
+        collectionFields.style.display = "block";
+        document.getElementById("treasury-header").style.display = "block"; // Show contribution cost
+        contributionCostElement.textContent = contributionCost; // Display contribution cost
+        alert(`Collection for "${event}" has started.`);
+      } else {
+        alert("Please enter a valid event name and contribution cost, and ensure collection is not already started.");
+      }
+    }
+
+    // Function to add a contribution for an attendee
+    function addContribution() {
+      const name = nameInput.value;
+      const money = parseFloat(prompt(`Enter the contributed money amount of ${name}:`));
+
+      if (name && !isNaN(money) && money >= 0) {
+        if (isCollectionStarted) {
+          const currentDate = new Date().toLocaleString(); // Display date and time
+          let remainingBalance = 0.00;
+
+          // Check if the money meets the contribution cost
+          if (money >= contributionCost) {
+            remainingBalance = 0.00;
+          } else {
+            remainingBalance = contributionCost - money;
+          }
+
+          const record = { event: currentEvent, name, money, remainingBalance, date: currentDate };
+          treasuryRecords.push(record);
+          nameInput.value = "";
+          updateTreasuryTable();
+          saveToLocalStorage();
+        } else {
+          alert("Collection has not been started. Click 'Start Collection' first.");
+        }
+      } else {
+        alert("Please fill in valid Name and Contributed Money fields.");
+      }
+    }
+
+    // Function to update the treasury table
+    function updateTreasuryTable(data = treasuryRecords) {
+      tbody.innerHTML = "";
+      let totalCollectedMoney = 0;
+      data.forEach((record) => {
+        const row = tbody.insertRow();
+        const eventCell = row.insertCell(0);
+        const nameCell = row.insertCell(1);
+        const moneyCell = row.insertCell(2);
+        const remainingBalanceCell = row.insertCell(3);
+        const dateCell = row.insertCell(4);
+        const actionCell = row.insertCell(5); // Added a new column for the update button
+
+        eventCell.textContent = record.event;
+        nameCell.textContent = record.name;
+        moneyCell.textContent = record.money.toFixed(2); // Display money with 2 decimal places
+        remainingBalanceCell.textContent = record.remainingBalance.toFixed(2); // Display remaining balance with 2 decimal places
+        dateCell.textContent = record.date;
+
+        // Check if the money meets the contribution cost
+        if (record.money >= contributionCost) {
+          row.classList.add("green-highlight");
+        } else {
+          row.classList.add("red-highlight");
+          // Add an update button for rows where the contribution doesn't meet the cost
+          const updateButton = document.createElement("button");
+          updateButton.textContent = "Update";
+          updateButton.className = "update-button";
+          updateButton.addEventListener("click", () => updateRecordMoney(record));
+          actionCell.appendChild(updateButton);
+        }
+
+        totalCollectedMoney += record.money; // Calculate total collected money
+      });
+
+      // Update total collected money display
+      document.getElementById("total-collected-money").textContent = totalCollectedMoney.toFixed(2); // Display total with 2 decimal places
+    }
+
+    // Function to update an attendee's contributed money
+    function updateRecordMoney(record) {
+      const code = prompt(`Enter code to update contributed amount of ${record.name}:`);
+      if (code === "0000") {
+        const newMoney = parseFloat(prompt(`Enter the new contributed amount of ${record.name}:`, record.money));
+        if (!isNaN(newMoney) && newMoney >= 0) {
+          record.money = newMoney;
+
+          // Check if the new contributed money now meets the contribution cost
+          if (record.money >= contributionCost) {
+            record.remainingBalance = 0.00; // Set remaining balance to 0.00
+          } else {
+            record.remainingBalance = contributionCost - record.money; // Calculate remaining balance
+          }
+
+          updateTreasuryTable();
+          saveToLocalStorage();
+        } else {
+          alert("Invalid input. Money not updated.");
+        }
+      } else {
+        alert("Invalid code. Money not updated.");
+      }
+    }
+
+    // Function to search for a name in treasury records
+    function searchNames() {
+      const searchQuery = searchInput.value.toLowerCase();
+      if (searchQuery) {
+        const filteredData = treasuryRecords.filter((record) => record.name.toLowerCase().includes(searchQuery));
+
+        
+        // Update the table with the search results
+        updateTreasuryTable(filteredData);
+
+        if (filteredData.length === 0) {
+          alert("No records found.");
+        }
+      } else {
+        // Display all records if the search field is empty
+        updateTreasuryTable();
+      }
+    }
+
+    // Function to refresh the page and clear data
+    function refreshPage() {
+      const confirmationCode = prompt("Enter the code to refresh and clear data:");
+      if (confirmationCode === "0000") {
+        localStorage.clear();
+        location.reload();
+      } else {
+        alert("Invalid code. Data not cleared.");
+      }
+    }
+
+    // Function to save data to local storage
+    function saveToLocalStorage() {
+      localStorage.setItem("treasuryRecords", JSON.stringify(treasuryRecords));
+    }
+
+    // Function to load data from local storage
+    function loadFromLocalStorage() {
+      const storedRecords = localStorage.getItem("treasuryRecords");
+      if (storedRecords) {
+        treasuryRecords.push(...JSON.parse(storedRecords));
+        updateTreasuryTable();
+      }
+    }
+
+    // Function to confirm before refreshing the page
+    function confirmRefresh(event) {
+      event.preventDefault(); // Prevent the default browser refresh action
+      const confirmation = confirm("Are you sure you want to refresh the page? Any unsaved data will be lost.");
+
+      if (confirmation) {
+        location.reload(); // Reload the page if confirmed
+      }
+    }
+    // Load data from local storage when the page loads
+    loadFromLocalStorage();
+
+    // Event listeners
+    startCollectionButton.addEventListener("click", startCollection);
+    addContributionButton.addEventListener("click", addContribution);
+    refreshButton.addEventListener("click", refreshPage);
+    searchButton.addEventListener("click", searchNames); // Added event listener for Search button
+    window.addEventListener("beforeunload", confirmRefresh);
+
+  </script>
+</body>
+</html>

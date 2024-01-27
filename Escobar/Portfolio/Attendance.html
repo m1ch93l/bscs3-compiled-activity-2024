@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Attendance Tracker</title>
+  <link rel="stylesheet" href="attendance.css">
+</head>
+<body>
+  <div id="attendance-container">
+    <h2>Attendance Tracker</h2>
+    <input type="text" id="subject-input" class="input-field" placeholder="Subject">
+    <div class="button-container">
+      <button id="start-attendance">Start Attendance</button>
+    </div>
+    <div id="attendance-fields" style="display: none;">
+      <input type="text" id="name-input" class="input-field" placeholder="Name">
+      <div class="button-container">
+        <button id="mark-attendance">Mark Attendance</button>
+      </div>
+    </div>
+    <div class="button-container">
+      <button id="general-time-out-button">General Time Out</button>
+    </div>
+    <input type="text" id="search-input" class="input-field" placeholder="Search by Name">
+    <div class="button-container">
+      <button id="search-button">Search</button>
+      <button id="refresh-button">Refresh</button>
+    </div>
+    <table id="attendance-table">
+      <thead>
+        <tr>
+          <th>Subject</th>
+          <th>Name</th>
+          <th>Course</th>
+          <th>Time In</th>
+          <th>Time Out</th>
+        </tr>
+      </thead>
+      <tbody>
+    
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    const subjectInput = document.getElementById("subject-input");
+    const startAttendanceButton = document.getElementById("start-attendance");
+    const attendanceFields = document.getElementById("attendance-fields");
+    const nameInput = document.getElementById("name-input");
+    const markAttendanceButton = document.getElementById("mark-attendance");
+    const generalTimeoutButton = document.getElementById("general-time-out-button");
+    const attendanceTable = document.getElementById("attendance-table");
+    const tbody = attendanceTable.querySelector("tbody");
+    const refreshButton = document.getElementById("refresh-button");
+    const searchInput = document.getElementById("search-input");
+    const searchButton = document.getElementById("search-button");
+
+    let isAttendanceStarted = false;
+    let startTime;
+    let currentSubject;
+    const attendanceData = JSON.parse(localStorage.getItem("attendanceData")) || [];
+
+
+    function startAttendance() {
+      const subject = subjectInput.value;
+      if (subject && !isAttendanceStarted) {
+        subjectInput.disabled = true;
+        startAttendanceButton.disabled = true;
+        currentSubject = subject;
+        startTime = new Date();
+        isAttendanceStarted = true;
+        attendanceFields.style.display = "block";
+        alert(`Attendance for "${subject}" has started.`);
+      } else {
+        alert("Please enter a subject, and ensure attendance is not already started.");
+      }
+    }
+
+ 
+    function markAttendance() {
+      const name = nameInput.value;
+      if (name) {
+        if (isAttendanceStarted) {
+          const currentTime = new Date();
+          const timeIn = currentTime.toLocaleString(); 
+          const course = "BSCS-3"; 
+          const newEntry = { subject: currentSubject, name, course, timeIn, timeOutButton: true }; 
+          attendanceData.push(newEntry);
+          localStorage.setItem("attendanceData", JSON.stringify(attendanceData));
+          nameInput.value = "";
+          updateAttendanceTable();
+        } else {
+          alert("Attendance has not been started. Click 'Start Attendance' first.");
+        }
+      } else {
+        alert("Please fill in the Name field.");
+      }
+    }
+
+
+    function handleTimeout(index) {
+      const currentTime = new Date();
+      const timeOut = currentTime.toLocaleString(); 
+      attendanceData[index].timeOut = timeOut;
+      attendanceData[index].timeOutButton = false;
+      updateAttendanceTable();
+    }
+
+
+    function handleGeneralTimeout() {
+      if (isAttendanceStarted) {
+        const confirmationCode = prompt("Enter the code for General Time Out:");
+        if (confirmationCode === "0000") { 
+          const currentTime = new Date();
+          const timeOut = currentTime.toLocaleString(); 
+          attendanceData.forEach((entry) => {
+            if (entry.timeOutButton) {
+              entry.timeOut = timeOut;
+              entry.timeOutButton = false; 
+            }
+          });
+          updateAttendanceTable();
+        } else {
+          alert("Invalid code. General Time Out not performed.");
+        }
+      }
+    }
+
+
+    function refreshPage() {
+      const confirmationCode = prompt("Enter the code to refresh and clear data:");
+      if (confirmationCode === "0000") {
+        localStorage.clear();
+        location.reload();
+      } else {
+        alert("Invalid code. Data not cleared.");
+      }
+    }
+
+    
+    function searchNames() {
+      const searchQuery = searchInput.value.toLowerCase();
+
+      if (searchQuery === "") {
+       
+        updateAttendanceTable();
+      } else {
+        const filteredData = attendanceData.filter((entry) => entry.name.toLowerCase().includes(searchQuery));
+
+       
+        updateAttendanceTable(filteredData);
+
+        if (filteredData.length === 0) {
+          alert("No records found.");
+        }
+      }
+    }
+
+    
+    function updateAttendanceTable(data = attendanceData) {
+      tbody.innerHTML = "";
+      data.forEach((entry, index) => {
+        const row = tbody.insertRow();
+        const subjectCell = row.insertCell(0);
+        const nameCell = row.insertCell(1);
+        const courseCell = row.insertCell(2);
+        const timeInCell = row.insertCell(3);
+        const timeOutCell = row.insertCell(4); 
+
+        subjectCell.textContent = entry.subject;
+        nameCell.textContent = entry.name;
+        courseCell.textContent = entry.course;
+        timeInCell.textContent = entry.timeIn;
+
+        if (entry.timeOutButton) {
+        
+          const timeoutButton = document.createElement("button");
+          timeoutButton.textContent = "Time Out";
+          timeoutButton.className = "timeout-button";
+          timeoutButton.addEventListener("click", () => handleTimeout(index));
+          timeOutCell.appendChild(timeoutButton);
+        } else {
+         
+          timeOutCell.textContent = entry.timeOut;
+        }
+      });
+    }
+
+    
+    startAttendanceButton.addEventListener("click", startAttendance);
+    markAttendanceButton.addEventListener("click", markAttendance);
+    generalTimeoutButton.addEventListener("click", handleGeneralTimeout); 
+    refreshButton.addEventListener("click", refreshPage);
+    searchButton.addEventListener("click", searchNames);
+    updateAttendanceTable();
+  </script>
