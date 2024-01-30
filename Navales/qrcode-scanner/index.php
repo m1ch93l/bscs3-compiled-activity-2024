@@ -48,8 +48,8 @@
       scanner.clear();
       document.getElementById('reader').remove();
 
-        // Redirect to Facebook
-        window.location.href = "https://www.facebook.com";
+        // Redirect to my simple portfolio
+        window.location.href = "http://localhost:5173/";
     }
    
     function error(err) {
