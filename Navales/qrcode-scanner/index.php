@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>qrcode</title>
+  <title>QRcode</title>
 
   <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
 
@@ -49,7 +49,7 @@
       document.getElementById('reader').remove();
 
         // Redirect to my simple portfolio
-        window.location.href = "http://localhost:5173/";
+        window.location.href = "https://github.com/johnlouie09/qrcode-portfolio";
     }
    
     function error(err) {
